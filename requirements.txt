@@ -1,0 +1,23 @@
+
+# Backend
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+
+# Data processing and machine learning
+pandas
+numpy
+scikit-learn
+joblib
+
+# Natural language processing
+nltk
+
+# Local LLM API client
+openai
+
+# Testing
+pytest
+httpx
