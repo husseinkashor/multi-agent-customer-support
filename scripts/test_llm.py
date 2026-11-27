@@ -1,26 +1,26 @@
 
-from openai import OpenAI
+import sys
+from pathlib import Path
 
-client = OpenAI(
-    base_url="http://localhost:12434/engines/v1",
-    api_key="not-needed",
-)
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-response = client.chat.completions.create(
-    model="ai/qwen2.5:3B-Q4_K_M",
-    messages=[
-        {
-            "role": "system",
-            "content": "You are an assistant in a customer support system."
-        },
-        {
-            "role": "user",
-            "content": "A customer says their order is 10 days late. How would you respond?"
-        }
-    ],
-    temperature=0.3,
-    max_tokens=200,
-)
+from src.llm_client import LLMClient
 
-print("\nQwen response:")
-print(response.choices[0].message.content)
+
+def main():
+    llm = LLMClient()
+
+    answer = llm.generate(
+        prompt="A customer's order is 10 days late. Write a helpful response.",
+        system_message=(
+            "You are the Response Agent in a multi-agent "
+            "customer support system."
+        ),
+    )
+
+    print("\nResponse Agent output:")
+    print(answer)
+
+
+if __name__ == "__main__":
+    main()

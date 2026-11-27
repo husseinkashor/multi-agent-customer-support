@@ -24,3 +24,6 @@ mlartifacts/
 logs/
 .DS_Store
 Thumbs.db
+
+data/raw/*.csv
+models/
